@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",                 // Carpeta donde se guardarán los archivos .js compilados
+    "rootDir": "./src",                 // Carpeta donde están tus archivos fuente .ts
+    "lib": ["esnext"],                  // Incluye funcionalidades modernas de JavaScript (por ejemplo, Promesas, async/await)
+    "target": "ESNext",                 // Convierte el código TypeScript al estándar más reciente de JavaScript
+    "moduleResolution": "NodeNext",    // Define cómo resolver módulos al estilo Node.js moderno (usado con ESModules)
+    "module": "NodeNext",              // Usa el sistema de módulos moderno de Node.js (ESModules en lugar de CommonJS)
+    "strict": false,                   // Desactiva las comprobaciones estrictas de tipos (si lo pones en true, TypeScript será más estricto)
+    "sourceMap": true,                 // Genera archivos .map para que el navegador pueda mapear el JS compilado al TypeScript original (útil para depurar)
+    "esModuleInterop": true,           // Permite importar módulos CommonJS usando `import` en lugar de `require`
+    "declaration": true,               // Genera archivos de declaración (.d.ts) que describen las formas de los tipos exportados (útil para librerías)
+    "experimentalDecorators": true,    // Habilita el uso de decoradores (necesario para librerías como TypeORM o NestJS)
+    "emitDecoratorMetadata": true      // Añade metadatos de tipos al usar decoradores (útil para frameworks que dependen del tipo en tiempo de ejecución)
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts"]          
+}
