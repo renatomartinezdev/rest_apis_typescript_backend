@@ -21,13 +21,13 @@ export async function connectDB() {
 
 connectDB();
 
-//INSTANCIA DE EXPRESS
+
 const server = express()
 
-//PERMITIR CONEXIONES - FIX DEFINITIVO
+
 const corsOptions: CorsOptions = {
   origin: function(origin, callback){
-    // Permitir todos los requests sin origin (herramientas, requests internos)
+    
     if (!origin) return callback(null, true);
     
     // Lista de orígenes permitidos
@@ -36,11 +36,11 @@ const corsOptions: CorsOptions = {
       'https://rest-apis-typescript-frontend-cmd1.vercel.app'
     ];
     
-    // Si el origin está en la lista permitida, permitir
+    
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      // En lugar de error, permitir temporalmente para debug
+
       console.log('Origin no reconocido pero permitido:', origin);
       callback(null, true);
     }
@@ -50,14 +50,14 @@ const corsOptions: CorsOptions = {
 
 server.use(cors(corsOptions))
 
-//LEER DATOS DEL FORMULARIO
+
 server.use(express.json())
 
 server.use(morgan('combined'))
 
 server.use("/api/products", router)
 
-//DOCS
+
 server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec) )
 
 export default server
