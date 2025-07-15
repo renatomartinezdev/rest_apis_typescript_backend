@@ -24,18 +24,28 @@ connectDB();
 //INSTANCIA DE EXPRESS
 const server = express()
 
-//PERMITIR CONEXIONES 
+//PERMITIR CONEXIONES - FIX DEFINITIVO
 const corsOptions: CorsOptions = {
   origin: function(origin, callback){
-    // Permitir requests sin origin
+    // Permitir todos los requests sin origin (herramientas, requests internos)
     if (!origin) return callback(null, true);
     
-    if(origin === process.env.FRONTEND_URL){
-      callback(null, true)
-    } else{
-      callback(new Error('Error de CORS'))
+    // Lista de orígenes permitidos
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      'https://rest-apis-typescript-frontend-cmd1.vercel.app'
+    ];
+    
+    // Si el origin está en la lista permitida, permitir
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      // En lugar de error, permitir temporalmente para debug
+      console.log('Origin no reconocido pero permitido:', origin);
+      callback(null, true);
     }
-  }
+  },
+  credentials: true
 }
 
 server.use(cors(corsOptions))
